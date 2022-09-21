@@ -15,7 +15,7 @@ Please be sure that **Python3** is already installed.
 ```
 git clone https://github.com/MiraNizam/Bitly-API-service.git
 ```
-2. Now you need to receive your own unique **GENERIC ACCESS TOKEN** to do this, you need to log in to the site and [genetate token](https://app.bitly.com/settings/api/).
+2. Now you need to receive your own unique **GENERIC ACCESS TOKEN** to do this, you need to log in to the site and [generate token](https://app.bitly.com/settings/api/).
 
 3. Create **.env** file with unique environmental variable, that was created above. 
 

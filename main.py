@@ -49,9 +49,11 @@ def is_bitlink(url, token):
             return bitlink
 
 
+def main():
+    print(is_bitlink(url, token))
+
 if __name__ == "__main__":
     load_dotenv()
     token = os.environ['API_BITLY_TOKEN']
     url = input("Enter url:")
-    print(is_bitlink(url, token))
-
+    main()
