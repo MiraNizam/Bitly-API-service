@@ -1,31 +1,40 @@
 # Bitly API service
 
-Bitly API service interacts with [Bitly](https://bitly.com/pages/home/v1) and helps you in work with links. It can shorten income links creating bitlink or check your bitlink and return number of views.
+**Bitly API service** interacts with [Bitly](https://bitly.com/pages/home/v1) and helps you in work with links. It can shorten income links creating bitlink or check your bitlink and return number of views.
 
 ## Getting Started
 
-Ниже, вы найдете инструкцию о том как использовать Bitly API service.  
+Below you will find instructions on how to use **Bitly API service**.  
 
 ### Prerequisites
 
-Please be sure that Python3 is already installed. 
+Please be sure that **Python3** is already installed. 
 
 ### Installing
 1. Clone the repository:
 ```
 git clone https://github.com/MiraNizam/Bitly-API-service.git
 ```
-2. Create .env file with unique environmental variable, TOKEN.
+2. Now you need to receive your own unique **GENERIC ACCESS TOKEN** to do this, you need to log in to the site and [genetate token](https://app.bitly.com/settings/api/).
 
+3. Create **.env** file with unique environmental variable, that was created above. 
 
+| API_BITLY_TOKEN =   unique value  | 
+|--------------------------------------------|
 
-3. Use pip (or pip3, if there is a conflict with Python2) to install dependencies:
+4. Use pip (or pip3, if there is a conflict with Python2) to install dependencies:
 ```
 pip install -r requirements.txt
 ```
-4. How to run code
- ```
-Give the example
-```
+5. How to run code:
 
-End with an example of getting some data out of the system or using it for a little demo
+- Run `main.py`
+- Enter URL or Bitlink
+- get the result
+
+Examples:
+
+![ex1 input-output](input_url_1.bmp)
+
+![ex2 input-output](input_url_2.bmp)
+
