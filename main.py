@@ -1,35 +1,45 @@
+import os
+from urllib import parse
+
 import requests
 from dotenv import load_dotenv
-import os
+
+API_URL = "https://api-ssl.bitly.com/v4/bitlinks/"
 
 
 def shorten_link(token, url) -> str:
     """Func returns bitlink for URL"""
-    api_url = "https://api-ssl.bitly.com/v4/bitlinks"
     payload = {"long_url": url, "group_guid": "Bm8niFbY79l", "domain": "bit.ly"}
     headers = {"Authorization": token}
-    response = requests.post(api_url, headers=headers, json=payload)
+    response = requests.post(API_URL, headers=headers, json=payload)
     response.raise_for_status()
-    bitlink = response.json()['id']
+    bitlink = response.json()["id"]
     return f"Your bitlink: {bitlink}"
 
 
 def count_links(token, url) -> str:
     """Func returns quantity of bitlink cliks"""
-    url = "https://api-ssl.bitly.com/v4/bitlinks/{}/clicks/summary".format(url)
+    endpoint = "{}/clicks/summary".format(url)
+    api_url_clicks = parse.urljoin(API_URL, endpoint)
     headers = {"Authorization": token}
-    response = requests.get(url, headers=headers)
+    response = requests.get(api_url_clicks, headers=headers)
     response.raise_for_status()
-    clicks_count = response.json()['total_clicks']
+    clicks_count = response.json()["total_clicks"]
     return f"Bitlink clicks: {clicks_count}"
 
 
 def is_bitlink(url, token):
-    """Check url, bitlink for errors"""
-    api_url = "https://api-ssl.bitly.com/v4/bitlinks/{}".format(url)
+    """Check url, is bitlink or not"""
+    parsed_url = parse.urlparse(url)
+    url_without_scheme = parsed_url.netloc + parsed_url.path
+    api_url_check = parse.urljoin(API_URL, url_without_scheme)
     headers = {"Authorization": token}
-    response = requests.get(api_url, headers=headers)
-    if response.ok:
+    response = requests.get(api_url_check, headers=headers)
+    return response.ok
+
+
+def main():
+    if is_bitlink(url, token):
         try:
             clicks_count = count_links(token, url)
         except requests.exceptions.HTTPError as error:
@@ -37,7 +47,7 @@ def is_bitlink(url, token):
             text_error = error.response.text
             return status_code_error, text_error
         else:
-            return clicks_count
+            print(clicks_count)
     else:
         try:
             bitlink = shorten_link(token, url)
@@ -46,14 +56,11 @@ def is_bitlink(url, token):
             text_error = error.response.text
             return status_code_error, text_error
         else:
-            return bitlink
+            print(bitlink)
 
-
-def main():
-    print(is_bitlink(url, token))
 
 if __name__ == "__main__":
     load_dotenv()
-    token = os.environ['API_BITLY_TOKEN']
+    token = os.environ["API_BITLY_TOKEN"]
     url = input("Enter url:")
     main()
