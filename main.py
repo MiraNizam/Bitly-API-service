@@ -38,23 +38,25 @@ def is_bitlink(url, token):
     return response.ok
 
 
+# def check_link(url):
+#     """check response status, if it is not Ok, raise exception"""
+#     response = requests.get(url)
+#     response.raise_for_status()
+
+
 def main():
     if is_bitlink(url, token):
         try:
             clicks_count = count_links(token, url)
-        except requests.exceptions.HTTPError as error:
-            status_code_error = error.response.status_code
-            text_error = error.response.text
-            return status_code_error, text_error
+        except requests.exceptions.HTTPError:
+            print("The link is wrong, please check it")
         else:
             print(clicks_count)
     else:
         try:
             bitlink = shorten_link(token, url)
-        except requests.exceptions.HTTPError as error:
-            status_code_error = error.response.status_code
-            text_error = error.response.text
-            return status_code_error, text_error
+        except requests.exceptions.HTTPError:
+            print("The link is wrong, please check it")
         else:
             print(bitlink)
 
