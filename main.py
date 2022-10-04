@@ -28,10 +28,10 @@ def count_links(token, url) -> str:
     return clicks_count
 
 
-def is_bitlink(url, token):
-    """Check url, is bitlink or not"""
+def is_bitlink(url: str, token: str) -> bool:
+    """Check url and return True if itis a bitlink"""
     parsed_url = parse.urlparse(url)
-    url_without_scheme = parsed_url.netloc + parsed_url.path
+    url_without_scheme = "{}{}".format(parsed_url.netloc, parsed_url.path)
     api_url_check = parse.urljoin(API_URL, url_without_scheme)
     headers = {"Authorization": token}
     response = requests.get(api_url_check, headers=headers)
