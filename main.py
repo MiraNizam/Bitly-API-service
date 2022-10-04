@@ -4,6 +4,7 @@ from urllib import parse
 import requests
 from dotenv import load_dotenv
 
+
 API_URL = "https://api-ssl.bitly.com/v4/bitlinks/"
 
 
@@ -50,7 +51,7 @@ def main():
         try:
             bitlink = shorten_link(token, url)
         except requests.exceptions.HTTPError:
-            print("The link is wrong, please check it")
+            print("Link created by another account, access denied.")
         else:
             print(f"Your bitlink: {bitlink}")
 
