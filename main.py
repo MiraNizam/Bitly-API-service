@@ -48,12 +48,8 @@ def main():
         else:
             print(f"Bitlink clicks: {clicks_count}")
     else:
-        try:
-            bitlink = shorten_link(token, url)
-        except requests.exceptions.HTTPError:
-            print("Link created by another account, access denied.")
-        else:
-            print(f"Your bitlink: {bitlink}")
+        bitlink = shorten_link(token, url)
+        print(f"Your bitlink: {bitlink}")
 
 
 if __name__ == "__main__":
