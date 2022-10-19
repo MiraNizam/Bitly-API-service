@@ -28,13 +28,9 @@ pip install -r requirements.txt
 ```
 5. How to run code:
 
-- Run `main.py`
-- Enter URL or Bitlink
-- get the result
-
 Examples:
 
-![ex1 input-output](input_url_1.bmp)
+![ex1 input-output](input_url_1.png)
 
-![ex2 input-output](input_url_2.bmp)
+![ex2 input-output](input_url_2.png)
 
