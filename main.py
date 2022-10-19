@@ -3,9 +3,16 @@ from urllib import parse
 
 import requests
 from dotenv import load_dotenv
+import argparse
 
 
 API_URL = "https://api-ssl.bitly.com/v4/bitlinks/"
+
+def create_parser():
+    """create parser to add the links"""
+    parser = argparse.ArgumentParser()
+    parser.add_argument('url', help="add an url to start using API-service", type=str)
+    return parser.parse_args()
 
 
 def shorten_link(token, url) -> str:
@@ -59,5 +66,6 @@ def main():
 if __name__ == "__main__":
     load_dotenv()
     token = os.environ["API_BITLY_TOKEN"]
-    url = input("Enter url:")
+    args = create_parser()
+    url = args.url
     main()
