@@ -57,12 +57,16 @@ def main():
         try:
             total_clicks = count_links(token, url)
         except requests.exceptions.HTTPError:
-            print("The link is wrong, please check it")
+            print("The link is wrong, please check")
         else:
             print(f"Bitlink clicks: {total_clicks}")
     else:
-        bitlink = shorten_link(token, url)
-        print(f"Your bitlink: {bitlink}")
+        try:
+            bitlink = shorten_link(token, url)
+        except requests.exceptions.HTTPError:
+            print("The bitlink is invalid or access denied, please check")
+        else:
+            print(f"Your bitlink: {bitlink}")
 
 
 if __name__ == "__main__":
