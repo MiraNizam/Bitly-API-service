@@ -19,8 +19,8 @@ git clone https://github.com/MiraNizam/Bitly-API-service.git
 
 3. Create **.env** file with unique environmental variable, that was created above. 
 
-| API_BITLY_TOKEN =   unique value  | 
-|--------------------------------------------|
+| API_BITLY_TOKEN=unique value  | 
+|----------------------------------------|
 
 4. Use pip (or pip3, if there is a conflict with Python2) to install dependencies:
 ```
