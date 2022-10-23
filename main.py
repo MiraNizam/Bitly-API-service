@@ -9,7 +9,7 @@ import argparse
 API_URL = "https://api-ssl.bitly.com/v4/bitlinks/"
 
 
-def create_parser():
+def add_argument():
     """create parser to add the links"""
     parser = argparse.ArgumentParser()
     parser.add_argument('url', help="add an url to start using API-service")
@@ -50,7 +50,7 @@ def is_bitlink(url: str, token: str) -> bool:
 def main():
     load_dotenv()
     token = os.environ["API_TOKEN"]
-    args = create_parser()
+    args = add_argument()
     url = args.url
 
     if is_bitlink(url, token):
