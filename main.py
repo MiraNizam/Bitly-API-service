@@ -28,32 +28,32 @@ def shorten_link(token, url) -> str:
 def count_links(token, url) -> str:
     """Func returns quantity of bitlink cliks"""
     endpoint = "{}/clicks/summary".format(url)
-    api_url_clicks = parse.urljoin(API_URL, endpoint)
+    api_url = parse.urljoin(API_URL, endpoint)
     headers = {"Authorization": token}
-    response = requests.get(api_url_clicks, headers=headers)
+    response = requests.get(api_url, headers=headers)
     response.raise_for_status()
-    clicks_count = response.json()["total_clicks"]
-    return clicks_count
+    total_clicks = response.json()["total_clicks"]
+    return total_clicks
 
 
 def is_bitlink(url: str, token: str) -> bool:
     """Check url and return True if itis a bitlink"""
     parsed_url = parse.urlparse(url)
     url_without_scheme = "{}{}".format(parsed_url.netloc, parsed_url.path)
-    api_url_check = parse.urljoin(API_URL, url_without_scheme)
+    api_url = parse.urljoin(API_URL, url_without_scheme)
     headers = {"Authorization": token}
-    response = requests.get(api_url_check, headers=headers)
+    response = requests.get(api_url, headers=headers)
     return response.ok
 
 
 def main():
     if is_bitlink(url, token):
         try:
-            clicks_count = count_links(token, url)
+            total_clicks = count_links(token, url)
         except requests.exceptions.HTTPError:
             print("The link is wrong, please check it")
         else:
-            print(f"Bitlink clicks: {clicks_count}")
+            print(f"Bitlink clicks: {total_clicks}")
     else:
         bitlink = shorten_link(token, url)
         print(f"Your bitlink: {bitlink}")
@@ -61,7 +61,7 @@ def main():
 
 if __name__ == "__main__":
     load_dotenv()
-    token = os.environ["API_BITLY_TOKEN"]
+    token = os.environ["API_TOKEN"]
     args = create_parser()
     url = args.url
     main()
