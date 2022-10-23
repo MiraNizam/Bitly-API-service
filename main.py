@@ -47,10 +47,9 @@ def is_bitlink(url: str, token: str) -> bool:
     return response.ok
 
 
-if __name__ == "__main__":
+def main():
     load_dotenv()
     token = os.environ["API_TOKEN"]
-
     args = create_parser()
     url = args.url
 
@@ -64,3 +63,7 @@ if __name__ == "__main__":
     else:
         bitlink = shorten_link(token, url)
         print(f"Your bitlink: {bitlink}")
+
+
+if __name__ == "__main__":
+    main()
