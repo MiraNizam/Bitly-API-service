@@ -28,9 +28,18 @@ pip install -r requirements.txt
 ```
 5. How to run code:
 
-Examples:
+Input: 
+```
+main.py https://www.google.com/
+```
+Output example: 
+`Your bitlink: bit.ly/3gt5PHb`
 
-![ex1 input-output](input_url_1.png)
-
-![ex2 input-output](input_url_2.png)
-
+Input:
+```
+main.py bit.ly/3gt5PHb
+```
+Output example:
+`
+Bitlink clicks: 3
+`
