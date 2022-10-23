@@ -8,10 +8,11 @@ import argparse
 
 API_URL = "https://api-ssl.bitly.com/v4/bitlinks/"
 
+
 def create_parser():
     """create parser to add the links"""
     parser = argparse.ArgumentParser()
-    parser.add_argument('url', help="add an url to start using API-service", type=str)
+    parser.add_argument('url', help="add an url to start using API-service")
     return parser.parse_args()
 
 
