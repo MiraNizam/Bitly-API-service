@@ -47,7 +47,13 @@ def is_bitlink(url: str, token: str) -> bool:
     return response.ok
 
 
-def main():
+if __name__ == "__main__":
+    load_dotenv()
+    token = os.environ["API_TOKEN"]
+
+    args = create_parser()
+    url = args.url
+
     if is_bitlink(url, token):
         try:
             total_clicks = count_links(token, url)
@@ -58,11 +64,3 @@ def main():
     else:
         bitlink = shorten_link(token, url)
         print(f"Your bitlink: {bitlink}")
-
-
-if __name__ == "__main__":
-    load_dotenv()
-    token = os.environ["API_TOKEN"]
-    args = create_parser()
-    url = args.url
-    main()
